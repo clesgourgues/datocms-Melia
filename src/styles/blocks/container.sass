@@ -15,7 +15,7 @@
     background-color: $light-bg-color
 
     .container.is-open &
-      transform: translate3d(0px, 0, 0);
+      transform: translate3d(0px, 0, 0)
 
   .container__body
     transform: translate3d(0px, 0, 0)
@@ -28,17 +28,26 @@
   .container
     display: flex
     padding: 0
+  .container.home
+    flex-direction: row-reverse
+  .container.page
+    flex-direction: column
 
   .container__mobile-header
     display: none
 
   .container__sidebar
-    display: block
     width: 30%
     min-width: 320px
     box-sizing: border-box
     padding: 40px
     background-color: $light-bg-color
+  .container__sidebar.page
+    width: 100%
+    padding: 25px 25px 0 25px
+  .container__sidebar.home
+    display: flex
+    align-items: flex-end
 
   .container__body
     flex: 1

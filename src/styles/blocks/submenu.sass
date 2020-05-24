@@ -1,0 +1,22 @@
+.submenu
+    display: none
+
+.submenu.is-open
+    display: flex
+    flex-direction: column
+    background-color: white
+    font-size: 16px
+    padding: 10px
+    position: absolute
+    top: 40px
+    width: 320px
+    z-index: 10
+    li a
+        padding-left: 10px
+        margin-bottom: 10px
+    li a:before
+        background: none
+
+.submenu__parent
+    position: relative
+    cursor: pointer

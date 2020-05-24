@@ -6,18 +6,15 @@ import { Link } from 'gatsby';
 import { StaticQuery, graphql } from 'gatsby';
 import { HelmetDatoCms } from 'gatsby-source-datocms';
 import Img from 'gatsby-image';
-import Submenu from './Submenu';
-import Footer from './Footer';
 
 import '../styles/index.sass';
 
 const TemplateWrapper = ({ children }) => {
   const [showMenu, setShowMenu] = useState(false);
-  const [showSubMenu, setShowSubMenu] = useState(false);
   return (
     <StaticQuery
       query={graphql`
-        query LayoutQuery {
+        query HomeQuery {
           datoCmsSite {
             globalSeo {
               siteName
@@ -54,14 +51,6 @@ const TemplateWrapper = ({ children }) => {
             title
             slug
           }
-          allDatoCmsOffer(sort: { fields: [position], order: ASC }) {
-            edges {
-              node {
-                title
-                slug
-              }
-            }
-          }
           allDatoCmsSocialProfile(sort: { fields: [position], order: ASC }) {
             edges {
               node {
@@ -73,29 +62,24 @@ const TemplateWrapper = ({ children }) => {
         }
       `}
       render={data => (
-        <div className={`container page ${showMenu ? 'is-open' : ''}`}>
+        <div className={`container home ${showMenu ? 'is-open' : ''}`}>
           <HelmetDatoCms
             favicon={data.datoCmsSite.faviconMetaTags}
             seo={data.datoCmsHome.seoMetaTags}
           />
-          <div className='container__sidebar page'>
-            <div className='sidebar page'>
-              <h6 className='sidebar__title page'>
-                <Link to='/'>
-                  {' '}
-                  <Img fluid={data.datoCmsHome.logo.fluid} />
-                  <span>{data.datoCmsSite.globalSeo.siteName}</span>
-                </Link>
+          <div className='container__sidebar home'>
+            <div className='sidebar'>
+              <Img fluid={data.datoCmsHome.logo.fluid} />
+              <h6 className='sidebar__title'>
+                <Link to='/'>{data.datoCmsSite.globalSeo.siteName}</Link>
               </h6>
-              <ul className='sidebar__menu page'>
-                <li
-                  className='submenu__parent'
-                  onMouseEnter={() => setShowSubMenu(true)}
-                  onMouseLeave={() => setShowSubMenu(false)}
-                >
-                  Nos offres
-                  <Submenu showSubMenu={showSubMenu} />
-                </li>
+              <div
+                className='sidebar__intro'
+                dangerouslySetInnerHTML={{
+                  __html: data.datoCmsHome.introTextNode.childMarkdownRemark.html
+                }}
+              />
+              <ul className='sidebar__menu'>
                 <li>
                   <Link to={`/${data.datoCmsWork.slug}`}>{data.datoCmsWork.title}</Link>
                 </li>
@@ -106,6 +90,19 @@ const TemplateWrapper = ({ children }) => {
                   <Link to={`/${data.datoCmsAboutPage.slug}`}>{data.datoCmsAboutPage.title}</Link>
                 </li>
               </ul>
+              <p className='sidebar__social'>
+                {data.allDatoCmsSocialProfile.edges.map(({ node: profile }) => (
+                  <a
+                    key={profile.profileType}
+                    href={profile.url}
+                    target='blank'
+                    className={`social social--${profile.profileType.toLowerCase()}`}
+                  >
+                    {' '}
+                  </a>
+                ))}
+              </p>
+              <div className='sidebar__copyright'>{data.datoCmsHome.copyright}</div>
             </div>
           </div>
           <div className='container__body'>
@@ -119,18 +116,23 @@ const TemplateWrapper = ({ children }) => {
                     }}
                   />
                 </div>
-                <div className='mobile-header__logo page'>
+                <div className='mobile-header__logo home'>
                   <Link to='/'>
                     {' '}
                     <Img fluid={data.datoCmsHome.logo.fluid} />
                     <span>{data.datoCmsSite.globalSeo.siteName}</span>
                   </Link>
+                  <div
+                    className='sidebar__intro'
+                    dangerouslySetInnerHTML={{
+                      __html: data.datoCmsHome.introTextNode.childMarkdownRemark.html
+                    }}
+                  />
                 </div>
               </div>
             </div>
             {children}
           </div>
-          <Footer />
         </div>
       )}
     />
@@ -142,4 +144,3 @@ TemplateWrapper.propTypes = {
 };
 
 export default TemplateWrapper;
-/* eslint-enable jsx-a11y/anchor-has-content, jsx-a11y/anchor-is-valid*/
