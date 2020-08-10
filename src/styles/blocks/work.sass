@@ -1,55 +1,56 @@
 .work__subtitle
-    font-size: 20px
     text-transform: uppercase
     text-align: center
     margin: 20px 0
+    font-size: 2em
+    line-height: 1.3em
 
 .work__schema
-    height: 500px
-    width: 800px
-    position: relative
+    max-width: 880px
     margin: 0 auto
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-items: center
+    .work__schema-row
+        display: flex
+        align-items: center
+        justify-items: center
+        margin: 20px
+    .work__schema-row.large
+        width: 100%
+        justify-content: space-around
+    .work__schema-row.medium
+        width: 80%
+        justify-content: space-around
 
 .work__item
-    display: block
-    max-width: 300px
+    display: flex
+    align-items: center
+    width: 280px
+    height: 100px
     border-radius: 5px
     text-align: center
     padding: 10px
-    position: absolute
     color: white
 
-.work__item0
-    top: 0
-    right: 250px
+.item0
     background-color: $item
 
-.work__item1
-    top: 140px
-    right: 0
+.item1
     background-color: $item1
 
-.work__item2
-    top: 260px
-    right: 0
+.item2
     background-color: $item2
 
-.work__item3
-    top: 385px
-    right: 50px
+.item3
     background-color: $item3
 
-.work__item4
-    top: 375px
-    right: 400px
+.item4
     background-color: $item4
 
-.work__item5
-    top: 260px
-    right: 500px
+.item5
     background-color: $item5
 
-.work__item6
-    top: 140px
-    right: 500px
+.item6
     background-color: $item6

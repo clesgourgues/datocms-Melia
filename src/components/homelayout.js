@@ -6,10 +6,12 @@ import { Link } from 'gatsby';
 import { StaticQuery, graphql } from 'gatsby';
 import { HelmetDatoCms } from 'gatsby-source-datocms';
 import Img from 'gatsby-image';
+import Footer from './Footer';
+import BurgerButton from './BurgerButton';
 
 import '../styles/index.sass';
 
-const TemplateWrapper = ({ children }) => {
+const HomeLayout = ({ children }) => {
   const [showMenu, setShowMenu] = useState(false);
   return (
     <StaticQuery
@@ -67,14 +69,20 @@ const TemplateWrapper = ({ children }) => {
             favicon={data.datoCmsSite.faviconMetaTags}
             seo={data.datoCmsHome.seoMetaTags}
           />
+          <div className='Burger__container'>
+            <BurgerButton
+              open={showMenu}
+              setOpen={() => {
+                setShowMenu(!showMenu);
+              }}
+            />
+          </div>
           <div className='container__sidebar home'>
             <div className='sidebar'>
-              <Img fluid={data.datoCmsHome.logo.fluid} />
-              <h6 className='sidebar__title'>
-                <Link to='/'>{data.datoCmsSite.globalSeo.siteName}</Link>
-              </h6>
+              <Img className='sidebar__logo' fluid={data.datoCmsHome.logo.fluid} />
+              <h6 className='sidebar__title'>{data.datoCmsSite.globalSeo.siteName}</h6>
               <div
-                className='sidebar__intro'
+                className='sidebar__intro home'
                 dangerouslySetInnerHTML={{
                   __html: data.datoCmsHome.introTextNode.childMarkdownRemark.html
                 }}
@@ -94,7 +102,7 @@ const TemplateWrapper = ({ children }) => {
                 {data.allDatoCmsSocialProfile.edges.map(({ node: profile }) => (
                   <a
                     key={profile.profileType}
-                    href={profile.url}
+                    href={`mailto:${profile.url}?subject=Demande%20de%20renseignements`}
                     target='blank'
                     className={`social social--${profile.profileType.toLowerCase()}`}
                   >
@@ -108,22 +116,12 @@ const TemplateWrapper = ({ children }) => {
           <div className='container__body'>
             <div className='container__mobile-header'>
               <div className='mobile-header'>
-                <div className='mobile-header__menu'>
-                  <button
-                    onClick={e => {
-                      e.preventDefault();
-                      setShowMenu(!showMenu);
-                    }}
-                  />
-                </div>
+                <div className='mobile-header__menu'></div>
                 <div className='mobile-header__logo home'>
-                  <Link to='/'>
-                    {' '}
-                    <Img fluid={data.datoCmsHome.logo.fluid} />
-                    <span>{data.datoCmsSite.globalSeo.siteName}</span>
-                  </Link>
+                  <Img className='mobile-header__image home' fluid={data.datoCmsHome.logo.fluid} />
+                  <h2 className='mobile-header__title'>{data.datoCmsSite.globalSeo.siteName}</h2>
                   <div
-                    className='sidebar__intro'
+                    className='mobile-header__intro home'
                     dangerouslySetInnerHTML={{
                       __html: data.datoCmsHome.introTextNode.childMarkdownRemark.html
                     }}
@@ -133,14 +131,15 @@ const TemplateWrapper = ({ children }) => {
             </div>
             {children}
           </div>
+          <Footer home={true} />
         </div>
       )}
     />
   );
 };
 
-TemplateWrapper.propTypes = {
+HomeLayout.propTypes = {
   children: PropTypes.object
 };
 
-export default TemplateWrapper;
+export default HomeLayout;

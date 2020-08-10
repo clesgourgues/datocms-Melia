@@ -1,0 +1,53 @@
+.Burger
+    display: flex
+    flex-direction: column
+    justify-content: space-around
+    width: 2rem
+    height: 2rem
+    background: transparent
+    border: none
+    margin-top: 6px
+    cursor: pointer
+    padding: 0
+    z-index: 10
+    &:focus
+        outline: none
+    div
+        width: 2rem
+        height: 1px
+        background: black
+        border-radius: 10px
+        transition: all 0.3s linear
+        position: relative
+        transform-origin: 1px
+        &:first-child
+            transform: rotate(0)
+
+        &:nth-child(2)
+            opacity: 1
+            transform: translateX(0)
+
+        &:nth-child(3)
+            transform: rotate(0)
+
+.Burger__open
+    div
+        &:first-child
+            transform: rotate(45deg)
+
+        &:nth-child(2)
+            transform: translateX(20px)
+            opacity: 0
+
+        &:nth-child(3)
+            transform: rotate(-45deg)
+
+.Burger__container
+    position: absolute
+    top: 20px
+    left: 15px
+    width: 2rem
+    height: 2rem
+    z-index: 10
+    @media screen and (min-width: 900px)
+        display: none

@@ -5,7 +5,7 @@ import Layout from '../components/layout';
 const items = [
   "Accompagnement individuel et sur mesure du dirigeant : stratégie, plans d'application, coaching, développement des compétences",
   "Accompagnement des équipes : cohésion d'équipes, formations Métiers management, vente, négociation",
-  'Accompagnement de la relation bancaire et finacière',
+  'Accompagnement de la relation bancaire et financière',
   'Gestion des situations de crise (difficultés financières',
   "Accompagnement du financement du développement de l'entreprise (investissements, croissance externe)",
   'Organisation du patrimoine du dirigeant et de sa famille',
@@ -21,13 +21,25 @@ const Work = ({ data: { work } }) => {
         <div className='sheet__inner'>
           <h1 className='sheet__title'>{work.title}</h1>
           <span className='separator' />
-          <p className='work__subtitle'>{work.subtitle}</p>
+
+          <h3 className='work__subtitle'>{work.subtitle}</h3>
+
           <div className='work__schema'>
-            {items.map((item, index) => (
-              <span key={index} className={`work__item work__item${index}`}>
-                {item}
-              </span>
-            ))}
+            <div className='work__schema-row'>
+              <div className={`work__item item0`}>{items[0]} </div>
+            </div>
+            <div className='work__schema-row large'>
+              <div className={`work__item item1`}>{items[1]} </div>
+              <span className={`work__item item2`}>{items[2]}</span>
+            </div>
+            <div className='work__schema-row large '>
+              <span className={`work__item item3`}>{items[3]}</span>
+              <span className={`work__item item4`}>{items[4]}</span>
+            </div>
+            <div className='work__schema-row medium'>
+              <span className={`work__item item5`}>{items[5]}</span>
+              <span className={`work__item item6`}>{items[6]}</span>
+            </div>
           </div>
         </div>
       </article>

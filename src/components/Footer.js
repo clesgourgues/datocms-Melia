@@ -3,7 +3,7 @@
 import React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 
-const Footer = () => {
+const Footer = ({ home }) => {
   return (
     <StaticQuery
       query={graphql`
@@ -32,12 +32,11 @@ const Footer = () => {
       `}
       render={data => {
         return (
-          <div className='footer'>
+          <div className={`footer ${home ? 'home' : ''}`}>
             <div className='footer__column'>
               <ul>
                 <li>{data.datoCmsSite.globalSeo.siteName}</li>
                 <li
-                  className='sidebar__intro'
                   dangerouslySetInnerHTML={{
                     __html: data.datoCmsHome.introTextNode.childMarkdownRemark.html
                   }}

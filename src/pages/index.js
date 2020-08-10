@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link, graphql } from 'gatsby';
 import Img from 'gatsby-image';
-import Layout from '../components/homelayout';
+import HomeLayout from '../components/homelayout';
 
 const IndexPage = ({ data }) => (
-  <Layout>
+  <HomeLayout>
     <div className='showcase'>
       {data.allDatoCmsOffer.edges.map(({ node: offer }, index) => (
         <figure key={offer.id} className={`card showcase__item showcase__item${index}`}>
@@ -17,14 +17,14 @@ const IndexPage = ({ data }) => (
         </figure>
       ))}
     </div>
-  </Layout>
+  </HomeLayout>
 );
 
 export default IndexPage;
 
 export const query = graphql`
   query IndexQuery {
-    allDatoCmsOffer(sort: { fields: [position], order: ASC }) {
+    allDatoCmsOffer(sort: { fields: position, order: ASC }) {
       edges {
         node {
           id

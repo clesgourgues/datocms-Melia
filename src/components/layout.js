@@ -7,11 +7,13 @@ import { StaticQuery, graphql } from 'gatsby';
 import { HelmetDatoCms } from 'gatsby-source-datocms';
 import Img from 'gatsby-image';
 import Submenu from './Submenu';
+import MobileSubmenu from './MobileSubmenu';
 import Footer from './Footer';
+import BurgerButton from './BurgerButton';
 
 import '../styles/index.sass';
 
-const TemplateWrapper = ({ children }) => {
+const Layout = ({ children }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [showSubMenu, setShowSubMenu] = useState(false);
   return (
@@ -78,13 +80,31 @@ const TemplateWrapper = ({ children }) => {
             favicon={data.datoCmsSite.faviconMetaTags}
             seo={data.datoCmsHome.seoMetaTags}
           />
+          <div className='Burger__container'>
+            <BurgerButton
+              open={showMenu}
+              setOpen={() => {
+                setShowMenu(!showMenu);
+              }}
+            />
+          </div>
+          <div className='container__mobile-header'>
+            <div className='mobile-header'>
+              <div className='mobile-header__menu'></div>
+              <div className='mobile-header__logo page'>
+                <Link to='/'>
+                  {' '}
+                  <Img fluid={data.datoCmsHome.logo.fluid} />
+                </Link>
+              </div>
+            </div>
+          </div>
           <div className='container__sidebar page'>
             <div className='sidebar page'>
               <h6 className='sidebar__title page'>
                 <Link to='/'>
                   {' '}
-                  <Img fluid={data.datoCmsHome.logo.fluid} />
-                  <span>{data.datoCmsSite.globalSeo.siteName}</span>
+                  <Img className='sidebar__logo' fluid={data.datoCmsHome.logo.fluid} />
                 </Link>
               </h6>
               <ul className='sidebar__menu page'>
@@ -93,8 +113,9 @@ const TemplateWrapper = ({ children }) => {
                   onMouseEnter={() => setShowSubMenu(true)}
                   onMouseLeave={() => setShowSubMenu(false)}
                 >
-                  Nos offres
+                  <span>Nos offres</span>
                   <Submenu showSubMenu={showSubMenu} />
+                  <MobileSubmenu />
                 </li>
                 <li>
                   <Link to={`/${data.datoCmsWork.slug}`}>{data.datoCmsWork.title}</Link>
@@ -108,28 +129,7 @@ const TemplateWrapper = ({ children }) => {
               </ul>
             </div>
           </div>
-          <div className='container__body'>
-            <div className='container__mobile-header'>
-              <div className='mobile-header'>
-                <div className='mobile-header__menu'>
-                  <button
-                    onClick={e => {
-                      e.preventDefault();
-                      setShowMenu(!showMenu);
-                    }}
-                  />
-                </div>
-                <div className='mobile-header__logo page'>
-                  <Link to='/'>
-                    {' '}
-                    <Img fluid={data.datoCmsHome.logo.fluid} />
-                    <span>{data.datoCmsSite.globalSeo.siteName}</span>
-                  </Link>
-                </div>
-              </div>
-            </div>
-            {children}
-          </div>
+          <div className='container__body'>{children}</div>
           <Footer />
         </div>
       )}
@@ -137,9 +137,9 @@ const TemplateWrapper = ({ children }) => {
   );
 };
 
-TemplateWrapper.propTypes = {
+Layout.propTypes = {
   children: PropTypes.object
 };
 
-export default TemplateWrapper;
+export default Layout;
 /* eslint-enable jsx-a11y/anchor-has-content, jsx-a11y/anchor-is-valid*/

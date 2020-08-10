@@ -5,7 +5,13 @@
     display: flex
     color: $border-color
     font-size: 12px
+    @media screen and (max-width: 860px)
+        flex-direction: column
 .footer p
     padding: 0
 .footer__column
     padding: 20px
+
+@media screen and (min-width: 900px)
+    .footer.home
+        display: none
