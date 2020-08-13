@@ -112,6 +112,9 @@ const HomeLayout = ({ children }) => {
               </p>
               <div className='sidebar__copyright'>{data.datoCmsHome.copyright}</div>
             </div>
+            <div className='container__logo'>
+              <Img fluid={data.datoCmsHome.logo.fluid} />
+            </div>
           </div>
           <div className='container__body'>
             <div className='container__mobile-header'>
@@ -131,6 +134,7 @@ const HomeLayout = ({ children }) => {
             </div>
             {children}
           </div>
+
           <Footer home={true} />
         </div>
       )}

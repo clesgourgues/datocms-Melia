@@ -3,11 +3,16 @@
 
 .card__image
   display: block
+  &:hover
+    filter: none
   div
     height: 200px
 
   img
     display: block
+    filter: grayscale(100%)
+    &:hover
+      filter: none
 
 .card__caption
   position: absolute
@@ -24,6 +29,7 @@
   text-align: right
   line-height: 30px
   font-family: $title
+  text-shadow: 2px 4px 3px rgba(0,0,0,0.3)
 
 .flash
-  color: red
+  border: 4px solid $item4 !important

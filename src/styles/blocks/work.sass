@@ -9,30 +9,32 @@
     max-width: 880px
     margin: 0 auto
     display: flex
-    flex-direction: column
+    flex-direction: row
+    flex-wrap: wrap
     align-items: center
-    justify-items: center
-    .work__schema-row
-        display: flex
-        align-items: center
-        justify-items: center
-        margin: 20px
-    .work__schema-row.large
-        width: 100%
-        justify-content: space-around
-    .work__schema-row.medium
-        width: 80%
-        justify-content: space-around
+    justify-content: space-around
+    @media screen and (max-width: 600px)
+        flex-direction: column
+
+.work__number
+    font-family: $title
+    font-size: 45px
 
 .work__item
     display: flex
+    flex-direction: column
     align-items: center
     width: 280px
-    height: 100px
-    border-radius: 5px
+    height: 180px
     text-align: center
     padding: 10px
     color: white
+    margin-top: 20px
+
+.work__item-wrapper
+    display: flex
+    align-items: flex-end
+    margin-bottom: 20px
 
 .item0
     background-color: $item

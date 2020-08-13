@@ -128,6 +128,9 @@ const Layout = ({ children }) => {
                 </li>
               </ul>
             </div>
+            <div className='container__logo'>
+              <Img fluid={data.datoCmsHome.logo.fluid} />
+            </div>
           </div>
           <div className='container__body'>{children}</div>
           <Footer />
