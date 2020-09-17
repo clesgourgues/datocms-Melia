@@ -5,10 +5,10 @@
     display: flex
     flex-direction: column
     background-color: white
-    font-size: 18px
+    font-size: $small
     padding: 10px
     position: absolute
-    top: 35px
+    top: 50px
     width: 320px
     z-index: 10
     li a
@@ -22,10 +22,14 @@
 .submenu__parent
     position: relative
     cursor: pointer
+    padding: 10px
+    @media screen and (max-width: 900px)
+        padding: 0
     span
         text-decoration: none
         display: block
         padding-left: 20px
+        line-height: 30px
         color: $base-body-color
         position: relative
         &:before
@@ -43,10 +47,11 @@
             opacity: 0.6
 
 .mobile__submenu
-    font-size: 18px
+    font-size: $regular
     padding: 25px
     li
-        margin: 5px 0
+        margin: 20px 0
+        line-height: $regular
     li a:before
         background: none
     @media screen and (min-width: 900px)

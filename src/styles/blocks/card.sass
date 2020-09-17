@@ -3,16 +3,15 @@
 
 .card__image
   display: block
+  height: 100%
+  div
+    height: 250px
   &:hover
     filter: none
-  div
-    height: 200px
 
   img
     display: block
-    filter: grayscale(100%)
     &:hover
-      filter: none
 
 .card__caption
   position: absolute
@@ -24,12 +23,17 @@
   text-transform: uppercase
   text-decoration: none
   font-weight: bold
-  font-size: 28px
+  font-size: $large
   color: white
   text-align: right
-  line-height: 30px
+  line-height: $large
   font-family: $title
   text-shadow: 2px 4px 3px rgba(0,0,0,0.3)
 
 .flash
   border: 4px solid $item4 !important
+
+@media screen and (min-width: 1300px)
+  .card__image
+    div
+      height: 300px

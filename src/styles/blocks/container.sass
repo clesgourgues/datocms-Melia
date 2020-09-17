@@ -1,3 +1,4 @@
+
 @media screen and (max-width: 899px)
   .container__sidebar
     box-sizing: border-box
@@ -33,10 +34,14 @@
   .container
     display: flex
     padding: 0
+    min-height: 100%
+    //align-items: center
   .container.home
     flex-direction: row-reverse
+    height: 100%
   .container.page
     flex-direction: column
+  .container__body
 
   .container__mobile-header
     display: none
@@ -53,9 +58,11 @@
   .container__sidebar.home
     display: flex
     align-items: flex-end
+    height: 100%
 
   .container__body
     flex: 1
+    height: 100%
 
   .container__body--white
     background-color: white

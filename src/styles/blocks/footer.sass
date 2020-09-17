@@ -1,14 +1,19 @@
-.footer,
-.footer p
-    background-color: $dark-body-color
-    padding: 10px 40px
+.footer
+    width: 100%
+    align-items: center
+    justify-content: space-around
+    padding: 10px 60px
     display: flex
-    color: $border-color
-    font-size: 12px
+    background-color: $dark-body-color
     @media screen and (max-width: 860px)
         flex-direction: column
+        align-items: flex-start
+        justify-content: center
+.footer,
 .footer p
-    padding: 0
+    color: $border-color
+    font-size: $regular
+
 .footer__column
     padding: 20px
 

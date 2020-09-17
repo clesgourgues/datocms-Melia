@@ -4,16 +4,16 @@
 .showcase
   display: flex
   flex-wrap: wrap
-  align-items: center
-  justify-content: space-between
-  padding: 40px
+  justify-content: space-around
+  padding: 20px
+  height: 100%
+  align-content: center
 
 .showcase__item
   margin-bottom: 30px
-  max-height: 200px
   width: 35%
   overflow: hidden
-  border: 1px solid black
+  max-height: 250px
 
 .showcase__item1,
 .showcase__item2,
@@ -27,16 +27,6 @@
   .showcase__item
     width: 100%
 
-@media screen and (min-width: 401px)
-  .showcase
-
-  .showcase__item
-
 @media screen and (min-width: 1400px)
   .showcase__item
-
-@media screen and (min-width: 900px)
-  .showcase
-
-@media screen and (min-width: 1100px)
-  .showcase__item
+    max-height: 300px

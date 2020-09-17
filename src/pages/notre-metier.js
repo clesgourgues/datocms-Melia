@@ -15,8 +15,8 @@ const items = [
 
 const Work = ({ data: { work } }) => {
   const trail = useTrail(items.length, {
-    from: { marginLeft: -40, opacity: 0, transform: 'translate3d(0,-40px,0)' },
-    to: { marginLeft: 0, opacity: 1, transform: 'translate3d(0,0px,0)' }
+    from: { opacity: 0 },
+    to: { opacity: 1 }
   });
   return (
     <Layout>
